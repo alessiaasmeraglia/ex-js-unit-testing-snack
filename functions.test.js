@@ -82,4 +82,22 @@ describe("findPostById", () => {
             slug: "imparare-jest",
         });
     });
+    test("lancia un errore se un post non contiene id, title e slug", () => {
+        const invalidPosts = [
+            {
+                id: 1,
+                title: "Post senza slug",
+            },
+        ];
+
+        expect(() => findPostById(invalidPosts, 1)).toThrow(
+            "Struttura dei post non valida"
+        );
+    });
+
+    test("lancia un errore se l'id passato non è numerico", () => {
+        expect(() => findPostById(posts, "2")).toThrow(
+            "L'id deve essere numerico"
+        );
+    });
 });

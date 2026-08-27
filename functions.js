@@ -30,6 +30,21 @@ function isPalindrome(str) {
 }
 
 function findPostById(posts, id) {
+    const hasInvalidPost = posts.some((post) => {
+        return (
+            typeof post.id !== "number" ||
+            typeof post.title !== "string" ||
+            typeof post.slug !== "string"
+        );
+    });
+
+    if (hasInvalidPost) {
+        throw new Error("Struttura dei post non valida");
+    }
+
+    if (typeof id !== "number") {
+        throw new Error("L'id deve essere numerico");
+    }
     return posts.find((post) => post.id === id);
 }
 
