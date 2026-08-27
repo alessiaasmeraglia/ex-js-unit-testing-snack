@@ -6,7 +6,13 @@ function getInitials(fullName) {
 }
 
 function createSlug(stringa) {
-    return stringa.toLowerCase().replaceAll(" ", "-");
+    if (typeof stringa !== "string" || stringa.trim() === "") {
+        throw new Error("Titolo non valido");
+    }
+
+    return stringa
+        .toLowerCase()
+        .replaceAll(" ", "-");
 }
 
 function average(numbers) {
@@ -23,4 +29,8 @@ function isPalindrome(str) {
     return cleanStr === reversedStr;
 }
 
-module.exports = { getInitials, createSlug, average, isPalindrome };
+function findPostById(posts, id) {
+    return posts.find((post) => post.id === id);
+}
+
+module.exports = { getInitials, createSlug, average, isPalindrome, findPostById };

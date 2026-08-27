@@ -1,7 +1,27 @@
 const { getInitials,
     createSlug,
     average,
-    isPalindrome } = require("./functions");
+    isPalindrome,
+    findPostById
+} = require("./functions");
+
+const posts = [
+    {
+        id: 1,
+        title: "Introduzione a JavaScript",
+        slug: "introduzione-a-javascript",
+    },
+    {
+        id: 2,
+        title: "Imparare Jest",
+        slug: "imparare-jest",
+    },
+    {
+        id: 3,
+        title: "Unit Testing",
+        slug: "unit-testing",
+    },
+];
 
 describe("getInitials", () => {
     test("restituisce le iniziali di un nome completo", () => {
@@ -22,6 +42,13 @@ describe("createSlug", () => {
 
         expect(result).toBe("questo-è-un-test");
     });
+    test("lancia un errore se il titolo è vuoto", () => {
+        expect(() => createSlug("")).toThrow("Titolo non valido");
+    });
+
+    test("lancia un errore se il titolo non è una stringa", () => {
+        expect(() => createSlug(null)).toThrow("Titolo non valido");
+    });
 });
 
 describe("average", () => {
@@ -39,8 +66,20 @@ describe("isPalindrome", () => {
         expect(result).toBe(true);
     });
     test("restituisce false se la stringa non è un palindromo", () => {
-        const result = isPalindrome("Hello, world!");   
+        const result = isPalindrome("Hello, world!");
 
         expect(result).toBe(false);
+    });
+});
+
+describe("findPostById", () => {
+    test("restituisce il post corretto dato l'array di post e l'id", () => {
+        const result = findPostById(posts, 2);
+
+        expect(result).toEqual({
+            id: 2,
+            title: "Imparare Jest",
+            slug: "imparare-jest",
+        });
     });
 });
