@@ -14,6 +14,11 @@ describe("createSlug", () => {
 
         expect(result).toBe("javascript");
     });
+    test("sostituisce gli spazi con un trattino", () => {
+        const result = createSlug("Questo è un test");
+
+        expect(result).toBe("questo-è-un-test");
+    });
 });
 
 describe("average", () => {
@@ -23,3 +28,4 @@ describe("average", () => {
         expect(result).toBe(5);
     });
 });
+
