@@ -5,4 +5,8 @@ function getInitials(fullName) {
         .join("");
 }
 
-module.exports = { getInitials };
+function createSlug(stringa) {
+    return stringa.toLowerCase();
+}
+
+module.exports = { getInitials, createSlug };
