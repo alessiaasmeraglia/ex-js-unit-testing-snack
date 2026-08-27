@@ -1,4 +1,7 @@
-const { getInitials, createSlug, average } = require("./functions");
+const { getInitials,
+    createSlug,
+    average,
+    isPalindrome } = require("./functions");
 
 describe("getInitials", () => {
     test("restituisce le iniziali di un nome completo", () => {
@@ -29,3 +32,15 @@ describe("average", () => {
     });
 });
 
+describe("isPalindrome", () => {
+    test("restituisce true se la stringa è un palindromo", () => {
+        const result = isPalindrome("A man, a plan, a canal: Panama");
+
+        expect(result).toBe(true);
+    });
+    test("restituisce false se la stringa non è un palindromo", () => {
+        const result = isPalindrome("Hello, world!");   
+
+        expect(result).toBe(false);
+    });
+});
